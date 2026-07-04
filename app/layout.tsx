@@ -20,48 +20,31 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.othmanelbadry.com"),
-
-  title: {
-    default: "عثمان البدري | الموقع الرسمي",
-    template: "%s | عثمان البدري",
-  },
-
+  title: "عثمان البدري | الموقع الرسمي",
   description:
     "الموقع الرسمي للأستاذ عثمان أحمد محمد عبدالله البدري - رجل أعمال وشخصية عامة ورئيس مجلس إدارة مجموعة شركات الأمريكية.",
 
   keywords: [
     "عثمان البدري",
-    "عثمان أحمد محمد عبدالله البدري",
     "مجموعة شركات الأمريكية",
-    "رجل أعمال مصري",
+    "رجل أعمال",
     "الشركة الأمريكية للمقاولات",
+    "الشركة الأمريكية للأمن والحراسة",
+    "الشركة الأمريكية لخدمات البيئة",
   ],
 
-  authors: [
-    {
-      name: "عثمان أحمد محمد عبدالله البدري",
-    },
-  ],
-
-  creator: "عثمان أحمد محمد عبدالله البدري",
+  verification: {
+    google: "U05MwD_5BaXOKYx10CH2Sps-WzELu_BHbex5VeekQjk",
+  },
 
   openGraph: {
     title: "عثمان البدري | الموقع الرسمي",
     description:
       "الموقع الرسمي للأستاذ عثمان أحمد محمد عبدالله البدري.",
-    url: "https://www.othmanelbadry.com",
-    siteName: "الموقع الرسمي للأستاذ عثمان البدري",
+    url: "https://othman-elbadry-website.vercel.app",
+    siteName: "عثمان البدري",
     locale: "ar_EG",
     type: "website",
-    images: [
-      {
-        url: "/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "عثمان البدري",
-      },
-    ],
   },
 
   twitter: {
@@ -69,13 +52,6 @@ export const metadata: Metadata = {
     title: "عثمان البدري | الموقع الرسمي",
     description:
       "الموقع الرسمي للأستاذ عثمان أحمد محمد عبدالله البدري.",
-    images: ["/og-image.jpg"],
-  },
-
-  icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon.ico",
-    apple: "/apple-touch-icon.png",
   },
 };
 
