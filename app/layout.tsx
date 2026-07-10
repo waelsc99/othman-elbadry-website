@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Cairo, Poppins, Geist } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 
@@ -124,6 +125,23 @@ export default function RootLayout({
         "font-sans"
       )}
     >
+      <head>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-KHJ61EFWHB"
+          strategy="afterInteractive"
+        />
+
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-KHJ61EFWHB');
+          `}
+        </Script>
+      </head>
+
       <body className="bg-slate-950 text-white">
         <ScrollProgress />
         <StructuredData />
