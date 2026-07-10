@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://othmanelbadry.com/sitemap.xml",
+    sitemap: "https://othman-elbadry-website.vercel.app/sitemap.xml",
   };
 }

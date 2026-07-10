@@ -2,24 +2,36 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { FaFacebookF, FaWhatsapp, FaBars, FaTimes } from "react-icons/fa";
+import { usePathname } from "next/navigation";
+import {
+  FaFacebookF,
+  FaWhatsapp,
+  FaBars,
+  FaTimes,
+} from "react-icons/fa";
 import profile from "@/data/profile";
 
 const links = [
-  { name: "الرئيسية", href: "#" },
-  { name: "نبذة", href: "#about" },
-  { name: "المناصب", href: "#positions" },
-  { name: "الشركات", href: "#companies" },
-  { name: "المعرض", href: "#gallery" },
-  { name: "تواصل", href: "#contact" },
+  { name: "الرئيسية", href: "/" },
+  { name: "من نحن", href: "/about" },
+  { name: "الشركات", href: "/companies" },
+  { name: "التكريمات", href: "/honors" },
+  { name: "المعرض", href: "/gallery" },
+  { name: "تواصل معنا", href: "/contact" },
 ];
 
 export default function Navbar() {
+  const pathname = usePathname();
+
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 30);
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+
+    handleScroll();
 
     window.addEventListener("scroll", handleScroll);
 
@@ -33,42 +45,46 @@ export default function Navbar() {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        className={`fixed top-0 right-0 left-0 z-50 transition-all duration-300 ${
           scrolled
-            ? "bg-slate-950/90 backdrop-blur-xl border-b border-yellow-500/20 shadow-xl"
+            ? "border-b border-yellow-500/20 bg-slate-950/95 backdrop-blur-xl shadow-xl"
             : "bg-transparent"
         }`}
       >
-        <div className="max-w-7xl mx-auto h-20 px-6 flex items-center justify-between">
+        <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
 
-          <div className="text-right">
-            <h1 className="text-2xl font-bold text-yellow-400">
+          <Link href="/" className="text-right">
+            <h1 className="text-2xl font-black text-yellow-400">
               {profile.shortName}
             </h1>
 
             <p className="text-xs text-slate-400">
               Official Website
             </p>
-          </div>
+          </Link>
 
-          <nav className="hidden lg:flex items-center gap-8 text-sm font-medium">
+          <nav className="hidden items-center gap-8 lg:flex">
             {links.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
-                className="hover:text-yellow-400 transition"
+                className={`transition ${
+                  pathname === item.href
+                    ? "font-bold text-yellow-400"
+                    : "text-white hover:text-yellow-400"
+                }`}
               >
                 {item.name}
               </Link>
             ))}
           </nav>
 
-          <div className="hidden lg:flex items-center gap-3">
+          <div className="hidden items-center gap-3 lg:flex">
             <a
               href={`https://wa.me/${profile.whatsapp}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex h-11 w-11 items-center justify-center rounded-full bg-green-600 hover:bg-green-500 transition"
+              className="flex h-11 w-11 items-center justify-center rounded-full bg-green-600 transition hover:scale-110"
             >
               <FaWhatsapp />
             </a>
@@ -77,7 +93,7 @@ export default function Navbar() {
               href={profile.facebook}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex h-11 w-11 items-center justify-center rounded-full bg-blue-600 hover:bg-blue-500 transition"
+              className="flex h-11 w-11 items-center justify-center rounded-full bg-blue-600 transition hover:scale-110"
             >
               <FaFacebookF />
             </a>
@@ -85,18 +101,18 @@ export default function Navbar() {
 
           <button
             onClick={() => setOpen(!open)}
-            className="lg:hidden text-3xl text-yellow-400"
+            className="text-3xl text-yellow-400 lg:hidden"
+            aria-label="القائمة"
           >
             {open ? <FaTimes /> : <FaBars />}
           </button>
+
         </div>
       </header>
 
       <div
         className={`fixed inset-0 z-40 bg-slate-950/95 backdrop-blur-xl transition-all duration-300 lg:hidden ${
-          open
-            ? "opacity-100 visible"
-            : "opacity-0 invisible"
+          open ? "visible opacity-100" : "invisible opacity-0"
         }`}
       >
         <div className="flex h-full flex-col items-center justify-center gap-8">
@@ -106,13 +122,18 @@ export default function Navbar() {
               key={item.name}
               href={item.href}
               onClick={() => setOpen(false)}
-              className="text-2xl font-bold text-white hover:text-yellow-400 transition"
+              className={`text-2xl font-bold transition ${
+                pathname === item.href
+                  ? "text-yellow-400"
+                  : "text-white"
+              }`}
             >
               {item.name}
             </Link>
           ))}
 
-          <div className="mt-8 flex gap-5">
+          <div className="mt-10 flex gap-4">
+
             <a
               href={`https://wa.me/${profile.whatsapp}`}
               target="_blank"
@@ -130,6 +151,7 @@ export default function Navbar() {
             >
               <FaFacebookF />
             </a>
+
           </div>
 
         </div>

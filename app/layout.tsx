@@ -3,6 +3,10 @@ import { Cairo, Poppins, Geist } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 
+import StructuredData from "@/components/seo/StructuredData";
+import ScrollToTop from "@/components/shared/ScrollToTop";
+import ScrollProgress from "@/components/shared/ScrollProgress";
+
 const geist = Geist({
   subsets: ["latin"],
   variable: "--font-sans",
@@ -65,17 +69,30 @@ export const metadata: Metadata = {
     title: "عثمان أحمد محمد عبدالله البدري | الموقع الرسمي",
     description:
       "الموقع الرسمي للأستاذ عثمان أحمد محمد عبدالله البدري.",
+
     url: "https://othman-elbadry-website.vercel.app",
+
     siteName: "عثمان البدري",
+
     locale: "ar_EG",
+
     type: "website",
+
+    images: [
+      {
+        url: "/images/profile/profile.jpg",
+        width: 1200,
+        height: 630,
+        alt: "عثمان أحمد محمد عبدالله البدري",
+      },
+    ],
   },
 
   twitter: {
     card: "summary_large_image",
     title: "عثمان أحمد محمد عبدالله البدري | الموقع الرسمي",
-    description:
-      "الموقع الرسمي للأستاذ عثمان أحمد محمد عبدالله البدري.",
+    description: "الموقع الرسمي للأستاذ عثمان أحمد محمد عبدالله البدري.",
+    images: ["/images/profile/profile.jpg"],
   },
 
   robots: {
@@ -108,7 +125,10 @@ export default function RootLayout({
       )}
     >
       <body className="bg-slate-950 text-white">
+        <ScrollProgress />
+        <StructuredData />
         {children}
+        <ScrollToTop />
       </body>
     </html>
   );
