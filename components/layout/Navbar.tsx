@@ -13,11 +13,11 @@ import profile from "@/data/profile";
 
 const links = [
   { name: "الرئيسية", href: "/" },
-  { name: "من نحن", href: "/about" },
+  { name: "من نحن", href: "/#about" },
   { name: "الشركات", href: "/companies" },
-  { name: "التكريمات", href: "/honors" },
-  { name: "المعرض", href: "/gallery" },
-  { name: "تواصل معنا", href: "/contact" },
+  { name: "التكريمات", href: "/#honors" },
+  { name: "المعرض", href: "/#gallery" },
+  { name: "تواصل معنا", href: "/#contact" },
 ];
 
 export default function Navbar() {
@@ -42,6 +42,12 @@ export default function Navbar() {
     document.body.style.overflow = open ? "hidden" : "auto";
   }, [open]);
 
+  const isActive = (href: string) => {
+    if (href === "/") return pathname === "/";
+    if (href.startsWith("/#")) return pathname === "/";
+    return pathname === href;
+  };
+
   return (
     <>
       <header
@@ -52,7 +58,6 @@ export default function Navbar() {
         }`}
       >
         <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
-
           <Link href="/" className="text-right">
             <h1 className="text-2xl font-black text-yellow-400">
               {profile.shortName}
@@ -69,7 +74,7 @@ export default function Navbar() {
                 key={item.name}
                 href={item.href}
                 className={`transition ${
-                  pathname === item.href
+                  isActive(item.href)
                     ? "font-bold text-yellow-400"
                     : "text-white hover:text-yellow-400"
                 }`}
@@ -106,7 +111,6 @@ export default function Navbar() {
           >
             {open ? <FaTimes /> : <FaBars />}
           </button>
-
         </div>
       </header>
 
@@ -116,14 +120,13 @@ export default function Navbar() {
         }`}
       >
         <div className="flex h-full flex-col items-center justify-center gap-8">
-
           {links.map((item) => (
             <Link
               key={item.name}
               href={item.href}
               onClick={() => setOpen(false)}
               className={`text-2xl font-bold transition ${
-                pathname === item.href
+                isActive(item.href)
                   ? "text-yellow-400"
                   : "text-white"
               }`}
@@ -133,7 +136,6 @@ export default function Navbar() {
           ))}
 
           <div className="mt-10 flex gap-4">
-
             <a
               href={`https://wa.me/${profile.whatsapp}`}
               target="_blank"
@@ -151,9 +153,7 @@ export default function Navbar() {
             >
               <FaFacebookF />
             </a>
-
           </div>
-
         </div>
       </div>
     </>

@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Cairo, Poppins, Geist } from "next/font/google";
-import Script from "next/script";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 
@@ -58,6 +57,16 @@ export const metadata: Metadata = {
 
   publisher: "الموقع الرسمي للأستاذ عثمان البدري",
 
+  category: "Business",
+
+  manifest: "/manifest.webmanifest",
+
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
+  },
+
   verification: {
     google: "U05MwD_5BaXOKYx10CH2Sps-WzELu_BHbex5VeekQjk",
   },
@@ -70,15 +79,10 @@ export const metadata: Metadata = {
     title: "عثمان أحمد محمد عبدالله البدري | الموقع الرسمي",
     description:
       "الموقع الرسمي للأستاذ عثمان أحمد محمد عبدالله البدري.",
-
     url: "https://othman-elbadry-website.vercel.app",
-
     siteName: "عثمان البدري",
-
     locale: "ar_EG",
-
     type: "website",
-
     images: [
       {
         url: "/images/profile/profile.jpg",
@@ -125,23 +129,6 @@ export default function RootLayout({
         "font-sans"
       )}
     >
-      <head>
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-KHJ61EFWHB"
-          strategy="afterInteractive"
-        />
-
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-
-            gtag('config', 'G-KHJ61EFWHB');
-          `}
-        </Script>
-      </head>
-
       <body className="bg-slate-950 text-white">
         <ScrollProgress />
         <StructuredData />
