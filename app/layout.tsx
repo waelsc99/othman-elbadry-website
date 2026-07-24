@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 import StructuredData from "@/components/seo/StructuredData";
 import ScrollToTop from "@/components/shared/ScrollToTop";
 import ScrollProgress from "@/components/shared/ScrollProgress";
+import LoadingScreen from "@/components/LoadingScreen";
 
 const geist = Geist({
   subsets: ["latin"],
@@ -27,17 +28,19 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://othman-elbadry-website.vercel.app"),
 
   title: {
-    default: "عثمان أحمد محمد عبدالله البدري | الموقع الرسمي",
-    template: "%s | الموقع الرسمي",
+    default: "عثمان البدري | الموقع الرسمي للأستاذ عثمان أحمد محمد عبدالله البدري",
+    template: "%s | عثمان البدري",
   },
 
   description:
-    "الموقع الرسمي للأستاذ عثمان أحمد محمد عبدالله البدري، رجل أعمال مصري ورئيس مجلس إدارة مجموعة شركات الأمريكية، ويضم السيرة الذاتية، المناصب، الإنجازات، التكريمات، معرض الصور ووسائل التواصل.",
+    "عثمان البدري | الموقع الرسمي للأستاذ عثمان أحمد محمد عبدالله البدري، رجل أعمال مصري ورئيس مجلس إدارة مجموعة شركات الأمريكية، ويضم السيرة الذاتية، المناصب، الإنجازات، التكريمات، معرض الصور ووسائل التواصل.",
 
   keywords: [
     "عثمان البدري",
     "عثمان أحمد محمد عبدالله البدري",
     "الموقع الرسمي عثمان البدري",
+    "عثمان البدري سوهاج",
+    "عثمان البدري الكويت",
     "مجموعة شركات الأمريكية",
     "الشركة الأمريكية للمقاولات",
     "الشركة الأمريكية للأمن والحراسة",
@@ -45,6 +48,8 @@ export const metadata: Metadata = {
     "رجل أعمال مصري",
     "مدينة بدر",
     "جمعية أبناء سوهاج",
+    "رابطة أبناء سوهاج",
+    "الجالية المصرية بالكويت",
   ],
 
   authors: [
@@ -76,9 +81,9 @@ export const metadata: Metadata = {
   },
 
   openGraph: {
-    title: "عثمان أحمد محمد عبدالله البدري | الموقع الرسمي",
+    title: "عثمان البدري | الموقع الرسمي للأستاذ عثمان أحمد محمد عبدالله البدري",
     description:
-      "الموقع الرسمي للأستاذ عثمان أحمد محمد عبدالله البدري.",
+      "عثمان البدري | الموقع الرسمي للأستاذ عثمان أحمد محمد عبدالله البدري، رجل أعمال مصري ورئيس مجلس إدارة مجموعة شركات الأمريكية.",
     url: "https://othman-elbadry-website.vercel.app",
     siteName: "عثمان البدري",
     locale: "ar_EG",
@@ -88,15 +93,15 @@ export const metadata: Metadata = {
         url: "/images/profile/profile.jpg",
         width: 1200,
         height: 630,
-        alt: "عثمان أحمد محمد عبدالله البدري",
+        alt: "عثمان البدري",
       },
     ],
   },
 
   twitter: {
     card: "summary_large_image",
-    title: "عثمان أحمد محمد عبدالله البدري | الموقع الرسمي",
-    description: "الموقع الرسمي للأستاذ عثمان أحمد محمد عبدالله البدري.",
+    title: "عثمان البدري | الموقع الرسمي للأستاذ عثمان أحمد محمد عبدالله البدري",
+    description: "عثمان البدري | الموقع الرسمي للأستاذ عثمان أحمد محمد عبدالله البدري، رجل أعمال مصري.",
     images: ["/images/profile/profile.jpg"],
   },
 
@@ -130,6 +135,7 @@ export default function RootLayout({
       )}
     >
       <body className="bg-slate-950 text-white">
+        <LoadingScreen />
         <ScrollProgress />
         <StructuredData />
         {children}
