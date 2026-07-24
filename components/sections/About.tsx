@@ -548,7 +548,7 @@ export default function About() {
             </div>
             <div className="flex items-center justify-center gap-3 text-slate-300 p-4 bg-slate-900/50 rounded-xl border border-slate-800">
               <FaAward className="text-yellow-400" />
-              <span>www.albadri.com</span>
+              <span>othman-elbadry-website.vercel.app</span>
             </div>
           </div>
         </div>
