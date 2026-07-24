@@ -11,7 +11,7 @@ function Counter({ value, suffix = "" }: { value: number; suffix?: string }) {
 }
 
 const stats = [
-  { label: "سنوات الخبرة", value: 25, suffix: "+" },
+  { label: "سنوات الخبرة", value: 50, suffix: "+" },
   { label: "التكريمات", value: 66 },
   { label: "اللقاءات الرسمية", value: 50, suffix: "+" },
   { label: "المناصب القيادية", value: 8 },
