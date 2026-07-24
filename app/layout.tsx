@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 import StructuredData from "@/components/seo/StructuredData";
 import ScrollToTop from "@/components/shared/ScrollToTop";
 import ScrollProgress from "@/components/shared/ScrollProgress";
-import LoadingScreen from "@/components/LoadingScreen";
+import LoadingScreen from "@/components/LoadingScreen"; // ✅ المسار صح
 
 const geist = Geist({
   subsets: ["latin"],
@@ -52,18 +52,10 @@ export const metadata: Metadata = {
     "الجالية المصرية بالكويت",
   ],
 
-  authors: [
-    {
-      name: "عثمان أحمد محمد عبدالله البدري",
-    },
-  ],
-
+  authors: [{ name: "عثمان أحمد محمد عبدالله البدري" }],
   creator: "عثمان أحمد محمد عبدالله البدري",
-
   publisher: "الموقع الرسمي للأستاذ عثمان البدري",
-
   category: "Business",
-
   manifest: "/manifest.webmanifest",
 
   icons: {
@@ -124,16 +116,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="ar"
-      dir="rtl"
-      className={cn(
-        cairo.variable,
-        poppins.variable,
-        geist.variable,
-        "font-sans"
-      )}
-    >
+    <html lang="ar" dir="rtl" className={cn(cairo.variable, poppins.variable, geist.variable, "font-sans")}>
       <body className="bg-slate-950 text-white">
         <LoadingScreen />
         <ScrollProgress />
