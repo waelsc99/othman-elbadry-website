@@ -7,6 +7,8 @@ import StructuredData from "@/components/seo/StructuredData";
 import ScrollToTop from "@/components/shared/ScrollToTop";
 import ScrollProgress from "@/components/shared/ScrollProgress";
 import LoadingScreen from "@/components/LoadingScreen";
+import { AuthProvider } from "@/context/AuthContext";
+
 const geist = Geist({
   subsets: ["latin"],
   variable: "--font-sans",
@@ -118,9 +120,11 @@ export default function RootLayout({
     <html lang="ar" dir="rtl" className={cn(cairo.variable, poppins.variable, geist.variable, "font-sans")}>
       <body className="bg-slate-950 text-white">
         <LoadingScreen />
+        <AuthProvider>
+          {children}
+        </AuthProvider>
         <ScrollProgress />
         <StructuredData />
-        {children}
         <ScrollToTop />
       </body>
     </html>
