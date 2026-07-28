@@ -1,0 +1,13 @@
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": ".next",
+  "framework": "nextjs",
+  "env": {
+    "NEXT_PUBLIC_FIREBASE_API_KEY": "AIzaSyD41z9N0Uy47gDf-YWYk4_tMuOUxqsiKQ",
+    "NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN": "othman-elbadry-website-c972e.firebaseapp.com",
+    "NEXT_PUBLIC_FIREBASE_PROJECT_ID": "othman-elbadry-website-c972e",
+    "NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET": "othman-elbadry-website-c972e.firebasestorage.app",
+    "NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID": "597484376405",
+    "NEXT_PUBLIC_FIREBASE_APP_ID": "1:597484376405:web:0f336ed603f031afc79fdc"
+  }
+}
