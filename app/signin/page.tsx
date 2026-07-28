@@ -1,78 +1,116 @@
 // app/signin/page.tsx
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '@/lib/firebase';
-import { useRouter } from 'next/navigation';
+import { useState } from "react";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "@/lib/firebase";
+import { useRouter } from "next/navigation";
 
 export default function SignIn() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+
     setLoading(true);
-    setError('');
+    setError("");
 
     try {
-      await signInWithEmailAndPassword(auth, email, password);
-      router.push('/admin');
-    } catch (err) {
-      setError('❌ الإيميل أو كلمة السر غير صحيحة');
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+
+      console.log("تم تسجيل الدخول بنجاح");
+      console.log(userCredential.user);
+
+      router.push("/admin");
+    } catch (err: any) {
+      console.error("Firebase Error:", err);
+      console.error("Error Code:", err.code);
+      console.error("Error Message:", err.message);
+
+      setError(
+        `خطأ Firebase:
+${err.code}
+
+${err.message}`
+      );
     } finally {
       setLoading(false);
     }
-  };
+  }
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-slate-950 p-4">
       <div className="w-full max-w-md">
-        <h1 className="text-3xl font-bold text-yellow-400 text-center mb-2">تسجيل الدخول</h1>
-        <p className="text-slate-400 text-center mb-8">لوحة تحكم الموقع الرسمي</p>
 
-        <form onSubmit={handleSubmit} className="bg-slate-900 p-8 rounded-2xl border border-yellow-500/20">
+        <h1 className="text-3xl font-bold text-yellow-400 text-center mb-2">
+          تسجيل الدخول
+        </h1>
+
+        <p className="text-slate-400 text-center mb-8">
+          لوحة تحكم الموقع الرسمي
+        </p>
+
+        <form
+          onSubmit={handleSubmit}
+          className="bg-slate-900 p-8 rounded-2xl border border-yellow-500/20"
+        >
+
           {error && (
-            <div className="mb-4 p-3 bg-red-500/10 border border-red-500/30 rounded-xl text-red-400 text-sm text-center">
+            <div className="mb-4 rounded-xl border border-red-500/40 bg-red-500/10 p-3 text-red-400 whitespace-pre-wrap text-sm">
               {error}
             </div>
           )}
 
           <div className="mb-4">
-            <label className="block text-sm text-slate-400 mb-2">الإيميل</label>
+            <label className="mb-2 block text-slate-400">
+              البريد الإلكتروني
+            </label>
+
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full p-3 bg-slate-800 border border-slate-700 rounded-xl text-white focus:outline-none focus:border-yellow-400 transition"
-              placeholder="waelsc91@gmail.com"
+              placeholder="example@gmail.com"
               required
+              className="w-full rounded-xl border border-slate-700 bg-slate-800 p-3 text-white outline-none focus:border-yellow-400"
             />
           </div>
 
           <div className="mb-6">
-            <label className="block text-sm text-slate-400 mb-2">كلمة السر</label>
+            <label className="mb-2 block text-slate-400">
+              كلمة المرور
+            </label>
+
             <input
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full p-3 bg-slate-800 border border-slate-700 rounded-xl text-white focus:outline-none focus:border-yellow-400 transition"
-              placeholder="••••••••"
+              placeholder="********"
               required
+              className="w-full rounded-xl border border-slate-700 bg-slate-800 p-3 text-white outline-none focus:border-yellow-400"
             />
           </div>
 
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-yellow-500 text-slate-950 font-bold py-3 rounded-xl hover:bg-yellow-400 transition disabled:opacity-50"
+            className="w-full rounded-xl bg-yellow-500 py-3 font-bold text-slate-900 transition hover:bg-yellow-400 disabled:opacity-60"
           >
-            {loading ? 'جاري الدخول...' : 'دخول'}
+            {loading ? "جارٍ تسجيل الدخول..." : "تسجيل الدخول"}
           </button>
+
         </form>
+
       </div>
     </div>
   );
